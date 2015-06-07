@@ -3,11 +3,16 @@ package movie.strat.com.moviedata.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.List;
 
+import movie.strat.com.moviedata.R;
+import movie.strat.com.moviedata.activity.MovieListActivity;
+import movie.strat.com.moviedata.adapter.MovieAdapter;
+import movie.strat.com.moviedata.data.Movie;
 import movie.strat.com.moviedata.dummy.DummyContent;
 
 /**
@@ -60,6 +65,8 @@ public class MovieListFragment extends ListFragment {
         }
     };
 
+    private MovieAdapter adapter;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -70,13 +77,10 @@ public class MovieListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MovieListActivity activity = (MovieListActivity) getActivity();
+        adapter = new MovieAdapter(getActivity().getBaseContext(), R.layout.movie_item, activity.getMovieList());
+        setListAdapter(adapter);
 
-        // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
-                getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                DummyContent.ITEMS));
     }
 
     @Override
@@ -149,4 +153,11 @@ public class MovieListFragment extends ListFragment {
 
         mActivatedPosition = position;
     }
+
+    public void addAdapterContents(List<Movie> items) {
+        adapter.addAll(items);
+        adapter.notifyDataSetChanged();
+
+    }
+
 }

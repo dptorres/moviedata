@@ -23,12 +23,12 @@ public class Movie {
     private String slug;
     private String mpa_rating;
 
-    public Movie(float rating, String language, String title, String url, String title_long,
+    public Movie(float rating, List<String> genres, String language, String title, String url, String title_long,
                  String imdb_code, int id, String state, int year, int runtime, String overview, String slug,
                  String mpa_rating) {
 
         this.rating = rating;
-//        this.genre = genre;
+        this.genres = genres;
         this.language = language;
         this.title = title;
         this.url = url;

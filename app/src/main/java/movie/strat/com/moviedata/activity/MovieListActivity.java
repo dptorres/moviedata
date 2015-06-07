@@ -2,7 +2,10 @@ package movie.strat.com.moviedata.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,10 +55,14 @@ public class MovieListActivity extends FragmentActivity
     // List of Movies
     private List<Movie> movies = new ArrayList<Movie>();
 
+    // Movie List Fragment
+    private MovieListFragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
+
 
         if (findViewById(R.id.movie_detail_container) != null) {
             // The detail container view will be present only in the
@@ -66,12 +73,13 @@ public class MovieListActivity extends FragmentActivity
 
             // In two-pane mode, list items should be given the
             // 'activated' state when touched.
+
             ((MovieListFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.movie_list))
                     .setActivateOnItemClick(true);
+
         }
         // TODO do a connectivity check first. Save loaded file into a local data store
-        // TODO get JSON file
         JsonParser.getJsonFromURL(url, this);
 
     }
@@ -111,11 +119,22 @@ public class MovieListActivity extends FragmentActivity
             for (int i = 0; i < movArray.length(); i++) {
                 Movie temp = gson.fromJson(movArray.get(i).toString(), Movie.class);
                 movies.add(temp);
-
             }
+            fragment.addAdapterContents(movies);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Movie> getMovieList() {
+        return movies;
+    }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+        this.fragment = (MovieListFragment) fragment;
+
     }
 }
