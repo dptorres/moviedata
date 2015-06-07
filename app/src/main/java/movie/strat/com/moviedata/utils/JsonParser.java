@@ -20,6 +20,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import movie.strat.com.moviedata.activity.MovieListActivity;
+
 /**
  * Created by Danah Torres on 6/7/2015.
  */
@@ -29,7 +31,7 @@ public class JsonParser {
     private static JSONObject jsonObject;
     private static String jsonString;
 
-    public static void getJsonFromURL(final String movieUrl) {
+    public static void getJsonFromURL(final String movieUrl, final MovieListActivity movieListActivity) {
         new AsyncTask<String, String, JSONObject>() {
 
             @Override
@@ -73,7 +75,8 @@ public class JsonParser {
             @Override
             protected void onPostExecute(JSONObject jsonObject) {
                 super.onPostExecute(jsonObject);
-                Log.i("json", jsonObject.toString());
+                // TODO Handle status not ok
+                movieListActivity.setJsonMovieObject(jsonObject);
             }
 
         }.execute();
