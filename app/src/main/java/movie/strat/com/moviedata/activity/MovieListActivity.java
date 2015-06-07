@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import org.json.JSONObject;
+
 import movie.strat.com.moviedata.fragment.MovieDetailFragment;
 import movie.strat.com.moviedata.fragment.MovieListFragment;
 import movie.strat.com.moviedata.R;
+import movie.strat.com.moviedata.utils.JsonParser;
 
 
 /**
@@ -34,6 +37,9 @@ public class MovieListActivity extends FragmentActivity
      */
     private boolean mTwoPane;
 
+    // Movie URL
+    private String url = "https://dl.dropboxusercontent.com/u/5624850/movielist/list_movies_page1.json";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +58,10 @@ public class MovieListActivity extends FragmentActivity
                     .findFragmentById(R.id.movie_list))
                     .setActivateOnItemClick(true);
         }
+        // TODO do a connectivity check first. Save loaded file into a local data store
+        // TODO get JSON file
+        JsonParser.getJsonFromURL(url);
 
-        // TODO: If exposing deep links into your app, handle intents here.
     }
 
     /**
