@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fmsirvent.ParallaxEverywhere.PEWImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
             convertView = LayoutInflater.from(context).inflate(layoutResourceId, parent, false);
             viewHolder.title = (TextView) convertView.findViewById(R.id.movie_title);
             viewHolder.yearReleased = (TextView) convertView.findViewById(R.id.year);
-            viewHolder.movieImg = (ImageView) convertView.findViewById(R.id.movie_image);
+            viewHolder.movieImg = (PEWImageView) convertView.findViewById(R.id.movie_image);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
