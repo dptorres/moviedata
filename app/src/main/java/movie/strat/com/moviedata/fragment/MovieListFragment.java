@@ -118,6 +118,7 @@ public class MovieListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
         super.onListItemClick(listView, view, position, id);
+        mActivatedPosition = position;
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
@@ -143,6 +144,11 @@ public class MovieListFragment extends ListFragment {
         getListView().setChoiceMode(activateOnItemClick
                 ? ListView.CHOICE_MODE_SINGLE
                 : ListView.CHOICE_MODE_NONE);
+    // If on dual-pane view, pre-select the first item from the chapter list
+        if (!getListView().getAdapter().isEmpty() && activateOnItemClick && mActivatedPosition == ListView.INVALID_POSITION) {
+            getListView().performItemClick(getListView(), 0, getListView().getItemIdAtPosition(0));
+        }
+
     }
 
     private void setActivatedPosition(int position) {
@@ -157,7 +163,10 @@ public class MovieListFragment extends ListFragment {
 
     public void addAdapterContents() {
         adapter.notifyDataSetChanged();
-
+        MovieListActivity activity = (MovieListActivity) getActivity();
+        if (activity.ismTwoPane()) {
+            setActivateOnItemClick(true);
+        }
     }
 
 }

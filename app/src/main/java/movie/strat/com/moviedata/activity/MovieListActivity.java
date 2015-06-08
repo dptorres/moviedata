@@ -141,4 +141,8 @@ public class MovieListActivity extends FragmentActivity
         }
 
     }
+
+    public boolean ismTwoPane() {
+        return mTwoPane;
+    }
 }
