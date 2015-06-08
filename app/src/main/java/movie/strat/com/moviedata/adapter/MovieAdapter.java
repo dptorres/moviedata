@@ -5,9 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,9 +40,10 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.movie_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(layoutResourceId, parent, false);
             viewHolder.title = (TextView) convertView.findViewById(R.id.movie_title);
             viewHolder.yearReleased = (TextView) convertView.findViewById(R.id.year);
+            viewHolder.movieImg = (ImageView) convertView.findViewById(R.id.movie_image);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -49,6 +51,8 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         viewHolder.title.setText(movie.getTitle());
         viewHolder.yearReleased.setText(movie.getYear() + "");
+        String url = "https://dl.dropboxusercontent.com/u/5624850/movielist/images/" + movie.getSlug() + "-backdrop.jpg";
+        Picasso.with(context).load(url).into(viewHolder.movieImg);
 
         return convertView;
     }
@@ -56,5 +60,6 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
     private static class ViewHolder {
         TextView title;
         TextView yearReleased;
+        ImageView movieImg;
     }
 }

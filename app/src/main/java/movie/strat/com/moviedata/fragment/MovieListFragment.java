@@ -84,6 +84,12 @@ public class MovieListFragment extends ListFragment {
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getListView().setDivider(null);
+    }
+
+    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -154,8 +160,7 @@ public class MovieListFragment extends ListFragment {
         mActivatedPosition = position;
     }
 
-    public void addAdapterContents(List<Movie> items) {
-        adapter.addAll(items);
+    public void addAdapterContents() {
         adapter.notifyDataSetChanged();
 
     }

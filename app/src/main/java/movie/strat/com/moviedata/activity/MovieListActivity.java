@@ -120,7 +120,7 @@ public class MovieListActivity extends FragmentActivity
                 Movie temp = gson.fromJson(movArray.get(i).toString(), Movie.class);
                 movies.add(temp);
             }
-            fragment.addAdapterContents(movies);
+            fragment.addAdapterContents();
 
         } catch (JSONException e) {
             e.printStackTrace();
