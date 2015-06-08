@@ -2,12 +2,12 @@ package movie.strat.com.moviedata.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
-import movie.strat.com.moviedata.fragment.MovieDetailFragment;
 import movie.strat.com.moviedata.R;
+import movie.strat.com.moviedata.fragment.MovieDetailFragment;
 
 
 /**
@@ -42,8 +42,8 @@ public class MovieDetailActivity extends ActionBarActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(MovieDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(MovieDetailFragment.ARG_ITEM_ID));
+            arguments.putSerializable(MovieListActivity.MOVIE_LIST,
+                    getIntent().getSerializableExtra(MovieListActivity.MOVIE_LIST));
             MovieDetailFragment fragment = new MovieDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

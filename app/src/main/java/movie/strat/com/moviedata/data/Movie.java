@@ -1,11 +1,12 @@
 package movie.strat.com.moviedata.data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Danah Torres on 6/7/2015.
  */
-public class Movie {
+public class Movie implements Serializable {
 
     // Movie information
     private float rating;

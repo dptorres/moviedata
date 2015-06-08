@@ -58,6 +58,8 @@ public class MovieListActivity extends FragmentActivity
     // Movie List Fragment
     private MovieListFragment fragment;
 
+    public static String MOVIE_LIST = "movie_list";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,13 +91,13 @@ public class MovieListActivity extends FragmentActivity
      * indicating that the item with the given ID was selected.
      */
     @Override
-    public void onItemSelected(String id) {
+    public void onItemSelected(int position) {
         if (mTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(MovieDetailFragment.ARG_ITEM_ID, id);
+            arguments.putSerializable(MovieListActivity.MOVIE_LIST, movies.get(position));
             MovieDetailFragment fragment = new MovieDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
@@ -106,7 +108,7 @@ public class MovieListActivity extends FragmentActivity
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, MovieDetailActivity.class);
-            detailIntent.putExtra(MovieDetailFragment.ARG_ITEM_ID, id);
+            detailIntent.putExtra(MovieListActivity.MOVIE_LIST, movies.get(position));
             startActivity(detailIntent);
         }
     }
@@ -134,7 +136,9 @@ public class MovieListActivity extends FragmentActivity
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
-        this.fragment = (MovieListFragment) fragment;
+        if (fragment instanceof MovieListFragment) {
+            this.fragment = (MovieListFragment) fragment;
+        }
 
     }
 }

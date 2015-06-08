@@ -37,7 +37,6 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Movie movie = items.get(position);
         ViewHolder viewHolder;
-        //TODO Paralax images
 
         if (convertView == null) {
             viewHolder = new ViewHolder();

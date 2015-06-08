@@ -3,17 +3,12 @@ package movie.strat.com.moviedata.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-
-import java.util.List;
 
 import movie.strat.com.moviedata.R;
 import movie.strat.com.moviedata.activity.MovieListActivity;
 import movie.strat.com.moviedata.adapter.MovieAdapter;
-import movie.strat.com.moviedata.data.Movie;
-import movie.strat.com.moviedata.dummy.DummyContent;
 
 /**
  * A list fragment representing a list of Movies. This fragment
@@ -52,7 +47,7 @@ public class MovieListFragment extends ListFragment {
         /**
          * Callback for when an item has been selected.
          */
-        public void onItemSelected(String id);
+        public void onItemSelected(int pos);
     }
 
     /**
@@ -61,7 +56,7 @@ public class MovieListFragment extends ListFragment {
      */
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
-        public void onItemSelected(String id) {
+        public void onItemSelected(int pos) {
         }
     };
 
@@ -126,7 +121,7 @@ public class MovieListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+        mCallbacks.onItemSelected(position);
     }
 
     @Override

@@ -3,5 +3,6 @@
     <color name="default_bg">#eeeeee</color>
     <color name="white">#ffffff</color>
     <color name="dark_gray">#424242</color>
+    <color name="subtext_color">#616161</color>
 
 </resources>
