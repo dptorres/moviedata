@@ -13,7 +13,8 @@
         <activity
             android:name=".activity.MovieListActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +25,8 @@
         <activity
             android:name=".activity.MovieDetailActivity"
             android:label="@string/title_movie_detail"
-            android:parentActivityName=".activity.MovieListActivity" >
+            android:parentActivityName=".activity.MovieListActivity"
+            android:configChanges="orientation|screenSize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.MovieListActivity" />

@@ -58,7 +58,7 @@ public class MovieListActivity extends FragmentActivity
     // Movie List Fragment
     private MovieListFragment fragment;
 
-    public static String MOVIE_LIST = "movie_list";
+    public static final String MOVIE_LIST = "movie_list";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
